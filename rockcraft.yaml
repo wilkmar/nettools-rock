@@ -1,0 +1,45 @@
+# Metadata section
+
+name: support-net-tools
+summary: Network tools image
+description: The rock contains various network tools for troubleshooting k8s networking.
+version: "latest"
+license: Apache-2.0
+
+base: ubuntu@22.04
+build-base: ubuntu@22.04
+platforms:
+  amd64:
+
+# Parts section
+
+parts:
+  support-net-tools:
+    plugin: nil
+    stage-packages:
+      - login  
+      - tcpdump
+      - iperf3
+      - curl
+      - wget
+      - net-tools
+      - bash
+      - ethtool
+      - traceroute
+      - iputils-tracepath
+      - iputils-ping
+      - bind9-dnsutils
+      - bind9-host
+      - vim-tiny
+      - jq
+      - iproute2
+      - tar
+      - gzip
+      - openssl
+      - netcat-openbsd
+    override-prime: |
+      craftctl default
+      ln -s /usr/bin/vim.tiny usr/bin/vi
+      ln -s /usr/bin/vim.tiny usr/bin/vim
+      ln -s /usr/bin/nc.openbsd usr/bin/nc
+      ln -s /usr/bin/traceroute-nanog usr/bin/traceroute
